@@ -1,4 +1,5 @@
 
+using System.Reflection;
 using Core.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,5 +14,13 @@ namespace Infrastructure.Data
     public DbSet<Product> Products {get; set;}
     public DbSet<ProductBrand> ProductBrands {get; set;}
     public DbSet<ProductType> ProductTypes {get; set;}
+
+    // this method overrides the DbContext create method to enforce data constrations from ProductConfiguration
+    protected override void OnModelCreating (ModelBuilder modelBuilder)
+    {
+      base.OnModelCreating(modelBuilder);
+      modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+    }
   }
 }
