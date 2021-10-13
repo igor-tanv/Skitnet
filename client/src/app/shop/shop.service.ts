@@ -4,6 +4,7 @@ import { IBrand } from '../models/brands';
 import { IPagination } from '../models/pagination';
 import { IType } from '../models/productType';
 import { map } from 'rxjs/operators'
+import { ShopParams } from '../models/shopParams';
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +13,14 @@ export class ShopService {
 
   baseUrl = 'https://localhost:5001/api/';
 
+  
+
   constructor(private http: HttpClient) { }
 
-  getProducts(brandId?: number, typeId?: number, sort?: string) {
+  getProducts(shopParams: ShopParams) {
+    
+    const { brandId, typeId, sort, pageNumber } = shopParams
+
     let params = new HttpParams();
 
     if (brandId) {
