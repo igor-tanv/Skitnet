@@ -36,22 +36,23 @@
 
     <section class="col-9">
       <div class="d-flex justify-content-between align-items-center pn-2">
-      <app-paging-header
-      [totalCount] ="totalCount"
-      [pageSize] ="this.shopParams.pageSize"
-      [pageNumber]="this.shopParams.pageNumber"
-
-      >
-    </app-paging-header>
+        <app-paging-header
+          [totalCount]="totalCount"
+          [pageSize]="this.shopParams.pageSize"
+          [pageNumber]="this.shopParams.pageNumber"
+        >
+        </app-paging-header>
         <div class="form-inline mt-2">
           <input
+            (keyup.enter)="onSearch()"
+            #search
             type="text"
             class="form-control"
             style="width: 300px"
             placeholder="Search"
           />
-          <button class="btn btn-outline-primary my-2">Search</button>
-          <button class="btn btn-outline-success ml-2 my-2">Reset</button>
+          <button (click)= "onSearch()" class="btn btn-outline-primary my-2">Search</button>
+          <button (click)= "onReset()" class="btn btn-outline-success ml-2 my-2">Reset</button>
         </div>
       </div>
 
@@ -60,14 +61,16 @@
           <app-product-item [product]="item"></app-product-item>
         </div>
       </div>
-      <div class="d-flex justify-content-center" *ngIf="totalCount && totalCount > 0">
+      <div
+        class="d-flex justify-content-center"
+        *ngIf="totalCount && totalCount > 0"
+      >
         <app-pager
-        [pageSize]="shopParams.pageSize"
-        [totalCount]="totalCount"
-        (pageChanged)="onPageChanged($event)"
+          [pageSize]="shopParams.pageSize"
+          [totalCount]="totalCount"
+          (pageChanged)="onPageChanged($event)"
         ></app-pager>
-      </div> 
-      
+      </div>
     </section>
   </div>
 </div>
