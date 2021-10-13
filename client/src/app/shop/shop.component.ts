@@ -4,7 +4,6 @@ import { IProduct } from '../models/product';
 import { IType } from '../models/productType';
 import { ShopParams } from '../models/shopParams';
 import { ShopService } from './shop.service';
-
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',
@@ -61,11 +60,13 @@ export class ShopComponent implements OnInit {
 
   onBrandSelected(brandId: number) {
     this.shopParams.brandId = brandId
+    this.shopParams.pageNumber = 1
     this.getProducts()
   }
 
   onTypeSelected(typeId: number) {
     this.shopParams.typeId = typeId
+    this.shopParams.pageNumber = 1
     this.getProducts()
   }
 
@@ -75,12 +76,15 @@ export class ShopComponent implements OnInit {
   }
 
   onPageChanged(event: any) {
-    this.shopParams.pageNumber = event.page;
-    this.getProducts()
+    if (this.shopParams.pageNumber !== event) {
+      this.shopParams.pageNumber = event.page;
+      this.getProducts()
+    }
   }
 
   onSearch() {
     this.shopParams.search = this.searchTerm.nativeElement.value;
+    this.shopParams.pageNumber = 1
     this.getProducts()
   }
 
