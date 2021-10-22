@@ -7,11 +7,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { HomeModule } from './home/home.module';
-import { NgxSpinnerModule } from 'ngx-spinner'
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { BasketComponent } from './basket/basket.component'
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BasketComponent
   ],
   imports: [
     BrowserModule,
