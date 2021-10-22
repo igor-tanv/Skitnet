@@ -1,8 +1,8 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { IBrand } from '../models/brands';
-import { IProduct } from '../models/product';
-import { IType } from '../models/productType';
-import { ShopParams } from '../models/shopParams';
+import { IBrand } from '../shared/models/brands';
+import { IProduct } from '../shared/models/product';
+import { IType } from '../shared/models/productType';
+import { ShopParams } from '../shared/models/shopParams';
 import { ShopService } from './shop.service';
 @Component({
   selector: 'app-shop',
