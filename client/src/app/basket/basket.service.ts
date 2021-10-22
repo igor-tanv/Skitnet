@@ -6,8 +6,6 @@ import { IBasket, IBasketItem, Basket /*IBasketTotals*/ } from '../shared/models
 import { map } from 'rxjs/operators';
 import { IProduct } from '../shared/models/product';
 
-//import { IProduct } from '../shared/models/product';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -23,6 +21,7 @@ export class BasketService {
       .pipe(
         map((basket: IBasket) => {
           this.basketSource.next(basket);
+          console.log(this.getCurrentBasketValue())
           //this.calculateTotals();
         })
       );
