@@ -1,6 +1,7 @@
 using API.Helpers;
 using Core.Interfaces;
 using Infrastructure.Data;
+using Infrastructure.Identity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -42,6 +43,10 @@ namespace API
 
       services.AddDbContext<StoreContext>(db => 
         db.UseSqlite(_config.GetConnectionString("DefaultConnection")));
+      services.AddDbContext<AppIdentityDbContext>(db =>
+      {
+        db.UseSqlite(_config.GetConnectionString("IdentityConnection"));
+      });
       services.AddCors(opt => 
         {
           opt.AddPolicy("CorsPolicy", builder => 
