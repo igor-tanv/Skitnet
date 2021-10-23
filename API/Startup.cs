@@ -1,3 +1,4 @@
+using API.Extensions;
 using API.Helpers;
 using Core.Interfaces;
 using Infrastructure.Data;
@@ -41,6 +42,7 @@ namespace API
         return ConnectionMultiplexer.Connect(config);
       });
 
+      services.AddIdentityServices();
       services.AddDbContext<StoreContext>(db => 
         db.UseSqlite(_config.GetConnectionString("DefaultConnection")));
       services.AddDbContext<AppIdentityDbContext>(db =>
