@@ -42,13 +42,13 @@ namespace API
         return ConnectionMultiplexer.Connect(config);
       });
 
-      services.AddIdentityServices();
       services.AddDbContext<StoreContext>(db => 
         db.UseSqlite(_config.GetConnectionString("DefaultConnection")));
       services.AddDbContext<AppIdentityDbContext>(db =>
       {
         db.UseSqlite(_config.GetConnectionString("IdentityConnection"));
       });
+      services.AddIdentityServices();
       services.AddCors(opt => 
         {
           opt.AddPolicy("CorsPolicy", builder => 
