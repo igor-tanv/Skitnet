@@ -48,7 +48,7 @@ namespace API
       {
         db.UseSqlite(_config.GetConnectionString("IdentityConnection"));
       });
-      services.AddIdentityServices();
+      services.AddIdentityServices(_config);
       services.AddCors(opt => 
         {
           opt.AddPolicy("CorsPolicy", builder => 
