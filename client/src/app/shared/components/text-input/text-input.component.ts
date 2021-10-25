@@ -23,6 +23,7 @@ export class TextInputComponent implements OnInit, ControlValueAccessor {
     control!.setValidators(validators);
     control!.setAsyncValidators(asyncValidators);
     control!.updateValueAndValidity();
+  
   }
 
   onChange(event: HTMLTextAreaElement) { }
