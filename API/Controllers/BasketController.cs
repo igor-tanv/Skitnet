@@ -1,36 +1,44 @@
 using System.Threading.Tasks;
+using API.Dtos;
+using AutoMapper;
 using Core.Entities;
 using Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
-  public class BasketController : BaseApiController
-  {
-    private readonly IBasketRepository _basketRepo;
-
-    public BasketController(IBasketRepository basketRepo)
+    public class BasketController : BaseApiController
     {
-      _basketRepo = basketRepo;
-    }
+        private readonly IBasketRepository _basketRepository;
+        private readonly IMapper _mapper;
+        public BasketController(IBasketRepository basketRepository, IMapper mapper)
+        {
+            _mapper = mapper;
+            _basketRepository = basketRepository;
+        }
 
-    [HttpGet]
-    public async Task<ActionResult<CustomerBasket>> GetBasketById(string id)
-    {
-        var basket = await _basketRepo.GetBasketAsync(id);
-        return Ok (basket ?? new CustomerBasket(id));
-    }
+        [HttpGet]
+        public async Task<ActionResult<CustomerBasket>> GetBasketById(string id)
+        {
+            var basket = await _basketRepository.GetBasketAsync(id);
 
-    [HttpPost]
-    public async Task<ActionResult<CustomerBasket>> UpdateBasket(CustomerBasket basket)
-    {
-      return Ok(await _basketRepo.UpdateBasketAsync(basket));
-    }
+            return Ok(basket ?? new CustomerBasket(id));
+        }
 
-    [HttpDelete]
-    public async Task DeleteBasketById(string id)
-    {
-       await _basketRepo.DeleteBasketAsync(id);
+        [HttpPost]
+        public async Task<ActionResult<CustomerBasket>> UpdateBasket(CustomerBasketDto basket)
+        {
+            var customerBasket = _mapper.Map<CustomerBasketDto, CustomerBasket>(basket);
+
+            var updatedBasket = await _basketRepository.UpdateBasketAsync(customerBasket);
+
+            return Ok(updatedBasket);
+        }
+
+        [HttpDelete]
+        public async Task DeleteBasketAsync(string id)
+        {
+            await _basketRepository.DeleteBasketAsync(id);
+        }
     }
-  }
 }

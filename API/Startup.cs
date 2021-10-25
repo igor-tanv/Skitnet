@@ -34,10 +34,7 @@ namespace API
       services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
       services.AddAutoMapper(typeof(MappingProfiles));
       services.AddControllers();
-      services.AddSwaggerGen(c =>
-      {
-        c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
-      });
+      services.AddSwaggerDocumentation();
 
       services.AddSingleton<ConnectionMultiplexer>(c => {
         var config = ConfigurationOptions.Parse(_config.GetConnectionString("Redis"), true);
