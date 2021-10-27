@@ -37,7 +37,7 @@ namespace API.Controllers
       var spec = new ProductsWithTypesAndBrandsSpecification(productParams);
       var countSpec = new ProductWithFiltersForCountSpecification(productParams);
       var totalItems = await _productsRepo.CountAsync(countSpec);
-      var products = await _productsRepo.ListAllAsync(spec);
+      var products = await _productsRepo.ListAsync(spec);
       var data = _mapper
         .Map<IReadOnlyList<Product>, IReadOnlyList<ProductToReturnDto>>(products);
 
@@ -57,13 +57,13 @@ namespace API.Controllers
     [HttpGet("brands")]
     public async Task<ActionResult<IReadOnlyList<ProductBrand>>> GetProductBrands()
     {
-      return Ok(await _productBrandsRepo.ListAllASync());
+      return Ok(await _productBrandsRepo.ListAllAsync());
     }
 
     [HttpGet("types")]
     public async Task<ActionResult<IReadOnlyList<ProductType>>> GetProductTypes()
     {
-    return Ok(await _productTypesRepo.ListAllASync());
+    return Ok(await _productTypesRepo.ListAllAsync());
     }
    }
 }
