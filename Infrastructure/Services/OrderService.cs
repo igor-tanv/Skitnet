@@ -57,8 +57,8 @@ namespace Infrastructure.Services
 
         public async Task<IReadOnlyList<DeliveryMethod>> GetDeliveryMethodsAsync()
         {
-            return await _unitOfWork.Repository<DeliveryMethod>().ListAllAsync();
-        }
+      return await _unitOfWork.Repository<DeliveryMethod>().ListAllAsync();
+    }
 
         public async Task<Order> GetOrderByIdAsync(int id, string buyerEmail)
         {
