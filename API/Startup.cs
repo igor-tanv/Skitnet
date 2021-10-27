@@ -10,7 +10,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
 using StackExchange.Redis;
 
 namespace API
@@ -29,6 +28,7 @@ namespace API
     {
 
       services.AddScoped<ITokenService, TokenService>();
+      services.AddScoped<IOrderService, OrderService>();
       services.AddScoped<IProductRepository, ProductRepository>();
       services.AddScoped<IBasketRepository, BasketRepository>();
       services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
