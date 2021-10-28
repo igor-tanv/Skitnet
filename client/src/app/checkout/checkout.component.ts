@@ -10,6 +10,8 @@ export class CheckoutComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log('checkout component')
   }
+
 
 }

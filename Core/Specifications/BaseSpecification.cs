@@ -30,7 +30,6 @@ namespace Core.Specifications
 
         public bool IsPagingEnabled {get; private set;}
 
-    public Expression<Func<T, object>> OrderByDesc => throw new NotImplementedException();
 
     protected void AddInclude(Expression<Func<T, object>> includeExpression)
         {
