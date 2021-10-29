@@ -9,8 +9,6 @@ import { BreadcrumbModule } from 'xng-breadcrumb';
 import { SectionHeaderComponent } from './section-header/section-header.component';
 import { SharedModule } from '../shared/shared.module';
 
-
-
 @NgModule({
   declarations: [NavBarComponent,  NotFoundComponent, ServerErrorComponent, SectionHeaderComponent],
   imports: [
