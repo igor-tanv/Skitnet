@@ -9,8 +9,8 @@ import { BasketService } from './basket.service';
   styleUrls: ['./basket.component.scss']
 })
 export class BasketComponent implements OnInit {
-  basket$!: Observable<IBasket>;
-  basketTotals$!: Observable<IBasketTotals>;
+  basket$: Observable<IBasket>;
+  basketTotals$: Observable<IBasketTotals>;
 
   constructor(private basketService: BasketService) { }
 
@@ -30,4 +30,5 @@ export class BasketComponent implements OnInit {
   decrementItemQuantity(item: IBasketItem) {
     this.basketService.decrementItemQuantity(item);
   }
+
 }
