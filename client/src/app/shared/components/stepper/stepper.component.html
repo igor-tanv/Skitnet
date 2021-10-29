@@ -3,14 +3,13 @@
         <li class="nav-item" *ngFor="let step of steps; let i = index">
             <button 
                 (click)="onClick(i)"
-                [disabled]="true"
                 [class.active]="selectedIndex === i"
-                class="nav-link text-uppercase font-weight-bold btn-block" style="padding: 1.20em;">
+                class="nav-link py-3 text-uppercase font-weight-bold btn-block">
                 {{step.label}}
             </button>
         </li>
     </ul>
     <div>
-        <ng-container [ngTemplateOutlet]="$any(selected).content"></ng-container>    
+        <ng-container [ngTemplateOutlet]="selected.content"></ng-container>    
     </div>
 </div>

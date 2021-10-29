@@ -8,7 +8,7 @@ import { CdkStepper } from '@angular/cdk/stepper';
   providers: [{ provide: CdkStepper, useExisting: StepperComponent }]
 })
 export class StepperComponent extends CdkStepper implements OnInit {
-  @Input() linearModeSelected!: boolean;
+  @Input() linearModeSelected: boolean;
 
   ngOnInit() {
     this.linear = this.linearModeSelected;
