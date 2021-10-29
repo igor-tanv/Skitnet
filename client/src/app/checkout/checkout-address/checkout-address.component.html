@@ -3,8 +3,8 @@
         <h4>Shipping address</h4>
         <button 
             (click)="saveUserAddress()" 
-            [disabled]="$any(!checkoutForm).get('addressForm').valid || 
-                $any(!checkoutForm).get('addressForm').dirty"
+            [disabled]="!checkoutForm.get('addressForm').valid || 
+                !checkoutForm.get('addressForm').dirty"
             class="btn btn-outline-success mb-3">
             Save as default address
         </button>
@@ -35,7 +35,7 @@
     <button class="btn btn-outline-primary" routerLink="/basket">
         <i class="fa fa-angle-left"></i> Back to Basket
     </button>
-    <button [disabled]="$any(!checkoutForm).get('addressForm').invalid" class="btn btn-primary" cdkStepperNext>
+    <button class="btn btn-primary" cdkStepperNext>
         Go to Delivery <i class="fa fa-angle-right"></i> 
     </button>
 </div>
