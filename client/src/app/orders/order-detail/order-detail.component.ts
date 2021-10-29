@@ -12,11 +12,7 @@ import { OrdersService } from '../orders.service';
 export class OrderDetailComponent implements OnInit {
   order: IOrder;
 
-  constructor(
-    private route: ActivatedRoute,
-    private breadcrumbService: BreadcrumbService,
-    private ordersService: OrdersService) {
-    
+  constructor(private route: ActivatedRoute, private breadcrumbService: BreadcrumbService, private ordersService: OrdersService) {
     this.breadcrumbService.set('@OrderDetailed', '');
   }
 
