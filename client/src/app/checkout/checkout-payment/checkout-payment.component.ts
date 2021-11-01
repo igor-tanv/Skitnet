@@ -23,6 +23,11 @@ export class CheckoutPaymentComponent implements AfterViewInit, OnDestroy {
   cardExpiry: any;
   cardCvc: any;
   cardErrors: any;
+  cardHandler = this.onChange.bind(this);
+  loading = false;
+  cardNumberValid = false;
+  cardExpiryValid = false;
+  cardCvcValid = false;
   
 
   constructor(
@@ -36,6 +41,25 @@ export class CheckoutPaymentComponent implements AfterViewInit, OnDestroy {
     this.cardExpiry.destroy();
     this.cardCvc.destroy();
   }
+
+  onChange(event) {
+    if (event.error) {
+      this.cardErrors = event.error.message;
+    } else {
+      this.cardErrors = null;
+    }
+    switch (event.elementType) {
+      case 'cardNumber':
+        this.cardNumberValid = event.complete;
+        break;
+      case 'cardExpiry':
+        this.cardExpiryValid = event.complete;
+        break;
+      case 'cardCvc':
+        this.cardCvcValid = event.complete;
+        break;
+    }
+  }
   
   ngAfterViewInit() {
     this.stripe = Stripe('pk_test_51Jq25iBj0a3eqNsqO6ko4bwbxPH3rrGbkbQye6QahmWAjaLNGNoI376JXAUv8Tf3SUTdxWQI6sJX285bmT41ByIv00RvYAdMt1');
@@ -43,15 +67,15 @@ export class CheckoutPaymentComponent implements AfterViewInit, OnDestroy {
 
     this.cardNumber = elements.create('cardNumber');
     this.cardNumber.mount(this.cardNumberElement.nativeElement);
-    //this.cardNumber.addEventListener('change', this.cardHandler);
+    this.cardNumber.addEventListener('change', this.cardHandler);
 
     this.cardExpiry = elements.create('cardExpiry');
     this.cardExpiry.mount(this.cardExpiryElement.nativeElement);
-    //this.cardExpiry.addEventListener('change', this.cardHandler);
+    this.cardExpiry.addEventListener('change', this.cardHandler);
 
     this.cardCvc = elements.create('cardCvc');
     this.cardCvc.mount(this.cardCvcElement.nativeElement);
-    //this.cardCvc.addEventListener('change', this.cardHandler);
+    this.cardCvc.addEventListener('change', this.cardHandler);
   }
   
 
