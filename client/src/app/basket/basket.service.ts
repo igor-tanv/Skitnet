@@ -103,7 +103,6 @@ export class BasketService {
   }
 
   deleteLocalBasket(id: string) {
-    console.log(id, 'local basket id')
     this.basketSource.next(null);
     this.basketTotalSource.next(null);
     localStorage.removeItem('basket_id');

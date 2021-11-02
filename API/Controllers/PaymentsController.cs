@@ -16,7 +16,7 @@ namespace API.Controllers
     private readonly IPaymentService _paymentService;
     private readonly ILogger<PaymentsController> _logger;
 
-    private string WhSecret = "";
+    private const string WhSecret = "whsec_Wb70sM0dlHzhDVKN9p2ZeIuukP5cdFRD";
     public PaymentsController(IPaymentService paymentService, ILogger<PaymentsController> logger) 
     {
       _logger = logger;
