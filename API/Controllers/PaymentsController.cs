@@ -47,17 +47,20 @@ namespace API.Controllers
       switch (stripeEvent.Type)
         {
           case "payment_intent.succeeded":
-              intent = (PaymentIntent)stripeEvent.Data.Object;
-              _logger.LogInformation("Payment Succeeded: ", intent.Id);
-              //TODO: update order with new status
-              break;
+            intent = (PaymentIntent)stripeEvent.Data.Object;
+            _logger.LogInformation("Payment Succeeded: ", intent.Id);
+            order = await _paymentService.UpdateOrderPaymentSucceeded(intent.Id);
+            _logger.LogInformation("Order updated to payment received: ", order.Id);
+          break;
+
           case "payment_intent.payment_failed":
-              intent = (PaymentIntent)stripeEvent.Data.Object;
-              _logger.LogInformation("Payment Failed: ", intent.Id);
-              //TODO: update order status
-              break;
+            intent = (PaymentIntent)stripeEvent.Data.Object;
+            _logger.LogInformation("Payment Failed: ", intent.Id);
+            order = await _paymentService.UpdateOrderPaymentFailed(intent.Id);
+            _logger.LogInformation("Payment failed: ", order.Id);
+          break;
         }
-            return new EmptyResult();
+          return new EmptyResult();
     }
   }
 }
