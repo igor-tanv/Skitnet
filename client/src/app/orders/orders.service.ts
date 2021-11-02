@@ -14,7 +14,7 @@ export class OrdersService {
     return this.http.get(this.baseUrl + 'orders');
   }
 
-  getOrderDetailed(id: number) {
+  getOrderDetail(id: number) {
     return this.http.get(this.baseUrl + 'orders/' + id);
   }
 }
