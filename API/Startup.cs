@@ -47,10 +47,10 @@ namespace API
       });
 
       services.AddDbContext<StoreContext>(db => 
-        db.UseSqlite(_config.GetConnectionString("DefaultConnection")));
+        db.UseNpgsql(_config.GetConnectionString("DefaultConnection")));
       services.AddDbContext<AppIdentityDbContext>(db =>
       {
-        db.UseSqlite(_config.GetConnectionString("IdentityConnection"));
+        db.UseNpgsql(_config.GetConnectionString("IdentityConnection"));
       });
       services.AddIdentityServices(_config);
       services.AddCors(opt => 
