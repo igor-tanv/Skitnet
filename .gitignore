@@ -457,5 +457,6 @@ $RECYCLE.BIN/
 appsettings.json
 skinet.db
 identity.db
+wwwroot
 
 
