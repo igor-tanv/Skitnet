@@ -455,8 +455,9 @@ $RECYCLE.BIN/
 !.vscode/extensions.json
 
 appsettings.json
-skinet.db
-identity.db
+*.db
 wwwroot
+publish
+settings.json
 
 
