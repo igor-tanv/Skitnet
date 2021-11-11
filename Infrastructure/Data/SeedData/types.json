@@ -1,18 +1,18 @@
 [
   {
     "Id": 1,
-    "Name": "Boards"
+    "Name": "Type1"
   },
   {
     "Id": 2,
-    "Name": "Hats"
+    "Name": "Type2"
   },
   {
     "Id": 3,
-    "Name": "Boots"
+    "Name": "Type3"
   },
   {
     "Id": 4,
-    "Name": "Gloves"
+    "Name": "Type4"
   }
 ]
